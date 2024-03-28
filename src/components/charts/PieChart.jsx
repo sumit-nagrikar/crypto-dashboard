@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useGetMarketsQuery } from "../../features/api/coinApiSlice";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
@@ -7,52 +6,6 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import SyncLoader from "react-spinners/SyncLoader";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-const Container = styled.div`
-  width: 50%;
-  height: 100%;
-  margin: 1%;
-  border-radius: 10px;
-  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.1);
-  @media (max-width: 424px) {
-    width: 100%;
-  }
-`;
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1%;
-`;
-
-const Top = styled.div`
-  display: flex;
-  height: 20%;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Title = styled.p`
-  font-weight: 800;
-  font-size: clamp(1rem, 1vw + 0.5rem, 1.5rem);
-  @media (max-width: 768px) {
-    font-size: clamp(1rem, 0.8vw + 0.5rem, 1.5rem);
-  }
-`;
-const TotalValue = styled.p`
-  color: gray;
-  font-size: calc(0.5vw + 0.5rem);
-`;
-const Bottom = styled.div`
-  width: 100%;
-  height: 80%;
-`;
-const ChartWrapper = styled.div`
-  width: 100%;
-  height: 200px;
-`;
 
 function PieChart() {
   //fetch data
@@ -89,7 +42,6 @@ function PieChart() {
         padding: 10,
         labels: {
           color: "rgb(67, 67, 177)",
-
           font: {
             size: 10,
           },
@@ -102,14 +54,16 @@ function PieChart() {
         formatter: (value, ctx) => {
           let sum = 0;
           let dataArr = ctx.chart.data.datasets[0].data;
-          // eslint-disable-next-line
-          dataArr.map((data) => {
-            sum += data;
-          });
-          let percentage = "$" + ((value * 1000) / sum).toFixed(2);
-          return percentage;
+          if (dataArr && dataArr.length > 0) {
+            dataArr.map((data) => {
+              sum += data;
+            });
+            let percentage = "$" + ((value * 1000) / sum).toFixed(2);
+            return percentage;
+          } else {
+            return ""; // Handle the case where dataArr is null or empty
+          }
         },
-
         labels: {
           title: {
             font: {
@@ -123,22 +77,27 @@ function PieChart() {
   };
 
   return (
-    <Container>
-      <Wrapper>
-        <Top>
-          <Title>Portfolio</Title>
-          <TotalValue>
+    <div className="w-1/2 h-full m-1 rounded-lg shadow-md">
+      <div className="w-full h-full flex flex-col justify-between p-1">
+        <div className="flex h-20 items-center justify-between">
+          <p className="font-bold text-xl">Portfolio</p>
+          <p className="text-gray-500">
             Total value <strong>$1000</strong>
-          </TotalValue>
-        </Top>
-        <Bottom>
-          <SyncLoader color="rgb(0, 51, 102)" size={10} loading={isFetching} />
-          <ChartWrapper>
+          </p>
+        </div>
+        <div className="w-full h-80">
+          <SyncLoader
+            color="rgb(0, 51, 102)"
+            size={10}
+            loading={isFetching}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          />
+          <div className="w-full h-full">
             <Pie data={data} options={options} plugins={[ChartDataLabels]} />
-          </ChartWrapper>
-        </Bottom>
-      </Wrapper>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

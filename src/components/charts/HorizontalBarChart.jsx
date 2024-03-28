@@ -1,9 +1,9 @@
 import React from "react";
 import { useGetMarketDataQuery } from "../../features/api/marketDataApiSlice";
 import moment from "moment/moment";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
+import { Bar } from "react-chartjs-2";
 
 import {
   Chart as ChartJS,
@@ -14,7 +14,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -24,12 +23,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const Container = styled.div`
-  height: 100%;
-  width: 100%;
-  padding: 1%;
-  box-shadow: 0px 10px 51px 0px rgba(0, 0, 0, 0.1);
-`;
 
 const HorizontalBarChart = () => {
   //Get selected crypto currency, currency, and selected time from store
@@ -40,6 +33,7 @@ const HorizontalBarChart = () => {
   const selectedCurrency = useSelector(
     (state) => state.selectCurrency.selectedCurrency
   );
+
   const selectedTime = useSelector((state) => state.selectTime.selectedTime);
 
   //fetch data
@@ -110,10 +104,10 @@ const HorizontalBarChart = () => {
   };
 
   return (
-    <Container>
+    <div className="h-full w-full p-1 shadow-md">
       <SyncLoader color="rgb(0, 51, 102)" size={10} loading={isFetching} />
       <Bar data={data} options={options} />
-    </Container>
+    </div>
   );
 };
 
