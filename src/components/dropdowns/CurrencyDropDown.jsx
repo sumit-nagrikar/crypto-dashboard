@@ -1,34 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { setCurrency } from "../../features/currencyDropDownSlice";
 import { useSelector } from "react-redux";
-import { useGetAllCurrenciesQuery } from "../../features/api/CurrencyApiSlice";
-
-const Container = styled.div`
-  height: 10vh;
-  min-width: 50px;
-  display: flex;
-  align-items: center;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  height: 50px;
-  overflow: scroll;
-  font-weight: 700;
-  background-color: #e6ecff;
-  margin: 1%;
-  border: none;
-  border-radius: 10px;
-  padding: 5px;
-  cursor: pointer;
-`;
-
-const Option = styled.option`
-  text-transform: uppercase;
-  font-weight: 400;
-`;
+import { useGetAllCurrenciesQuery } from "../../features/api/currencyApiSlice";
 
 const CurrencyDropDown = () => {
   //Get selected currency from store
@@ -45,19 +19,23 @@ const CurrencyDropDown = () => {
   const { data: currencyList } = useGetAllCurrenciesQuery();
 
   return (
-    <Container>
-      <Select onChange={handleChange} value={currency}>
-        <Option value="currency" disabled>
+    <div className="h-10vh w-full min-w-50 max-w-120 flex items-center">
+      <select
+        className="w-1/4 h-50 overflow-scroll font-semibold bg-blue-200 m-1 rounded-lg px-5 cursor-pointer"
+        onChange={handleChange}
+        value={currency}
+      >
+        <option value="currency" disabled>
           Currency
-        </Option>
+        </option>
         {currencyList &&
-          currencyList.map((currencyName) => (
-            <Option value={currencyName} key={currencyName}>
+          currencyList.map((currencyName, index) => (
+            <option value={currencyName} key={index}>
               {currencyName.toUpperCase()}
-            </Option>
+            </option>
           ))}
-      </Select>
-    </Container>
+      </select>
+    </div>
   );
 };
 

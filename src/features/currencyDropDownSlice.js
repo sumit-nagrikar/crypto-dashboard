@@ -13,6 +13,6 @@ export const currencyDropDownSlice = createSlice({
     },
   },
 });
-
+  
 export const { setCurrency } = currencyDropDownSlice.actions;
 export default currencyDropDownSlice.reducer;
