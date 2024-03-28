@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useGetExchangeDataQuery } from "../../features/api/marketDataApiSlice";
-import { useGetAllCurrenciesQuery } from "../../features/api/CurrencyApiSlice";
+import { useGetAllCurrenciesQuery } from "../../features/api/currencyApiSlice";
 
 const ExchangeRates = () => {
   const [enteredValue, setEnteredValue] = useState("");

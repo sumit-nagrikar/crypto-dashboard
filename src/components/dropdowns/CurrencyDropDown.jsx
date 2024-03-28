@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setCurrency } from "../../features/currencyDropDownSlice";
 import { useSelector } from "react-redux";
-import { useGetAllCurrenciesQuery } from "../../features/api/CurrencyApiSlice";
+import { useGetAllCurrenciesQuery } from "../../features/api/currencyApiSlice";
 
 const CurrencyDropDown = () => {
   //Get selected currency from store
