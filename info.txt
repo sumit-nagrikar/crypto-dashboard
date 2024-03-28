@@ -1,0 +1,47 @@
+User
+ |
+ | Selects option from dropdown
+ |-------------------------------------------> Dropdown Component
+                                                   |
+                                                   | Dispatches action
+                                                   |----------------------> Redux Store
+                                                                               |
+                                                                               | Processes action
+                                                                               |----------------------> coinApiSlice
+                                                                               |                           |
+                                                                               | Fetches data             |
+                                                                               |------------------------->|
+                                                                               |                           |
+                                                                               | Updates state with data  |
+                                                                               |<------------------------|
+                                                                               |                           |
+                                                                               |                           |
+                                                                               | Processes action        |
+                                                                               |----------------------> dropdownSlice
+                                                                               |                           |
+                                                                               | Updates state with      |
+                                                                               | selected option          |
+                                                                               |<------------------------|
+                                                                               |                           |
+                                                                               |                           |
+                                                                               | Updates state           |
+                                                                               |<------------------------|
+                                                                               |                           |
+                                                                               |                           |
+                                                   | Updates UI with new state |
+                                                   |<--------------------------|
+This detailed sequence diagram provides a step-by-step overview of the interactions:
+
+The user selects an option from the dropdown component.
+The dropdown component dispatches an action indicating the selected option.
+The action is received by the Redux store.
+The Redux store processes the action:
+The action is first handled by the coinApiSlice.
+coinApiSlice triggers data fetching from an external API.
+Upon successful data retrieval, coinApiSlice updates the store's state with the fetched data.
+Then, the action is handled by the dropdownSlice.
+dropdownSlice updates the store's state with the selected option.
+The Redux store updates its state based on the processed action.
+The updated state triggers UI updates in components subscribed to relevant parts of the store's state.
+The UI components re-render to display the updated data and selected options to the user.
+This detailed diagram provides a comprehensive view of how user interactions trigger actions, which in turn are processed by reducers to update the Redux store's state, leading to UI updates.

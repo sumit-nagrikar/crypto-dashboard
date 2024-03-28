@@ -10,5 +10,4 @@ export const currencyApi = createApi({
   }),
 });
 
-export const { useGetAllCurrenciesQuery, useGetCurrencyToCoinDataQuery } =
-  currencyApi;
+export const { useGetAllCurrenciesQuery, useGetCurrencyToCoinDataQuery } = currencyApi;
