@@ -3,7 +3,7 @@ import { coinApi } from "../features/api/coinApiSlice";
 import { currencyApi } from "../features/api/currencyApiSlice";
 import { marketDataApi } from "../features/api/marketDataApiSlice";
 import currencyDropDownReducer from "../features/currencyDropDownSlice";
-import cryptoCurrencyDropDownReducer from "../features/cryptoCurrenyDropDownSlice";
+import cryptoCurrencyDropDownReducer from "../features/cryptoCurrencyDropDownSlice";
 import timeReducer from "../features/timeSlice";
 import exchangeCurrencyDropDownReducer from "../features/exchageCurrenciesSlice";
 import chartTypeSliceReducer from "../features/chartTypeSlice";

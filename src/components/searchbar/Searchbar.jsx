@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setCryptoCurrency } from "../../features/cryptoCurrenyDropDownSlice";
+import { setCryptoCurrency } from "../../features/cryptoCurrencyDropDownSlice";
 import { useGetAllCoinsQuery } from "../../features/api/coinApiSlice";
-import {
-  Container,
-  Input,
-  SearchOutPutContainer,
-  SearchOutPut,
-} from "./Searchbar.styles";
 
 const Searchbar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -21,24 +15,30 @@ const Searchbar = () => {
     dispatch(setCryptoCurrency(e.target.value));
     setSearchValue("");
   };
+
   return (
-    <Container>
-      <Input
+    <div className="h-12 w-80">
+      <input
+        className="w-full h-full p-2 rounded-md border border-gray-300"
         value={searchValue}
         placeholder="Search Crypto Currencies"
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <SearchOutPutContainer active={searchValue}>
+      <div className={`w-full max-h-36 overflow-y-scroll bg-blue-200 p-1 rounded-b-md ${searchValue ? 'block' : 'hidden'}`}>
         {coinList &&
           coinList
             .filter((coin) => coin.name.includes(searchValue))
             .map((coin) => (
-              <SearchOutPut onClick={handleClick} key={coin.id}>
+              <p
+                key={coin.id}
+                className="cursor-pointer font-normal"
+                onClick={handleClick}
+              >
                 {coin.name}
-              </SearchOutPut>
+              </p>
             ))}
-      </SearchOutPutContainer>
-    </Container>
+      </div>
+    </div>
   );
 };
 

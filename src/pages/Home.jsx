@@ -9,60 +9,52 @@ import Sidebar from "../components/sidebar/Sidebar";
 import PieChart from "../components/charts/PieChart";
 import ExchangeRates from "../components/exchangerates/ExchangeRates";
 import { useSelector } from "react-redux";
-import HorizontalBarChart from "../components/charts/HorizontalBarhart";
+import HorizontalBarChart from "../components/charts/HorizontalBarChart";
 import VerticalBarChart from "../components/charts/VerticalBarChart";
-import {
-  Container,
-  Wrapper,  
-  Left,
-  Top,
-  Middle,
-  ChartBottom,
-  ChartTop,
-  Bottom,
-  Right,
-} from "./Home.styles";
 import Navbar from "../components/navbar/Navbar";
 
 const Home = () => {
   const chartType = useSelector(
     (state) => state.selectChartType.selectedChartType
   );
+
   return (
-    <Container>
+    <div className="w-full">
       <Navbar />
-      <Wrapper>
-        <Left>
-          <Top>
+      <div className="flex flex-col md:flex-row justify-between items-stretch w-full">
+        <div className="md:w-3/4 flex flex-col h-full">
+          <div className="flex justify-between items-center h-20 px-4 md:px-8 bg-red-500">
             <CurrencyDropDown />
             <Searchbar />
-          </Top>
-          <Middle>
-            <ChartTop>
-              <TimeButton />
-              <CryptoCurrencyDropDown />
-              <ChartTypeDropDown />
-            </ChartTop>
-            <ChartBottom>
-              {chartType === "verticalBarChart" ? (
-                <VerticalBarChart />
-              ) : chartType === "horizontalBarChart" ? (
-                <HorizontalBarChart />
-              ) : (
-                <LineChart />
-              )}
-            </ChartBottom>
-          </Middle>
-          <Bottom>
-            <PieChart />
-            <ExchangeRates />
-          </Bottom>
-        </Left>
-        <Right>
+          </div>
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="md:w-3/4 flex flex-col h-full">
+              <div className="flex justify-between items-center h-20 px-4 md:px-8 bg-blue-500">
+                <TimeButton />
+                <CryptoCurrencyDropDown />
+                <ChartTypeDropDown />
+              </div>
+              <div className="flex-1 flex flex-col items-center justify-center">
+                {chartType === "verticalBarChart" ? (
+                  <VerticalBarChart />
+                ) : chartType === "horizontalBarChart" ? (
+                  <HorizontalBarChart />
+                ) : (
+                  <LineChart />
+                )}
+              </div>
+            </div>
+            <div className="md:w-1/4 flex flex-col justify-between items-stretch">
+              <PieChart />
+              <ExchangeRates />
+            </div>
+          </div>
+        </div>
+        <div className="md:w-1/4">
           <Sidebar />
-        </Right>
-      </Wrapper>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <>
     <div>
-      <img src="" alt="" />
+      <img src= "/almalogo.png" alt="" />
     </div>
    </>
   );
