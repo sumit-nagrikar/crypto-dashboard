@@ -45,7 +45,7 @@ const HorizontalBarChart = () => {
 
   const coinsData = cryptoData?.prices;
 
-  const chartData = coinsData.map((value) => ({
+  const chartData = coinsData?.map((value) => ({
     x: value[0],
     y: value[1],
   }));
