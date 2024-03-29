@@ -14,7 +14,7 @@ const ChartTypeDropDown = () => {
     dispatch(setChartType(e.target.value));
   };
   return (
-    <div className="h-10vh w-1/4 m-1">
+    <div className="h-10vh w-1/4 m-4">
       <select
         className="w-full h-12 bg-blue-100 rounded-lg font-medium p-1 cursor-pointer"
         value={chartType}

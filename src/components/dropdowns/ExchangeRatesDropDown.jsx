@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setCurrency } from "../../features/currencyDropDownSlice";
-import { useGetAllCurrenciesQuery } from "../../features/api/CurrencyApiSlice";
+import { useGetAllCurrenciesQuery } from "../../features/api/currencyApiSlice";
 import { useSelector } from "react-redux";
 
 const ExchangeDropDown = () => {

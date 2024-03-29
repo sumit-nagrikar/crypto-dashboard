@@ -100,7 +100,7 @@ function LineChart() {
   };
 
   return (
-    <div className="h-full w-full p-1 shadow-md">
+    <div className="h-{25vh} w-full p-1 shadow-md">
       <SyncLoader color="rgb(0, 51, 102)" size={10} loading={isFetching} />
       <Line data={data} options={options} />
     </div>

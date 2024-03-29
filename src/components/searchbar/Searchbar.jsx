@@ -17,14 +17,14 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="h-12 w-80">
+    <div className="h-8 w-80">
       <input
         className="w-full h-full p-2 rounded-md border border-gray-300"
         value={searchValue}
         placeholder="Search Crypto Currencies"
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <div className={`w-full max-h-36 overflow-y-scroll bg-blue-200 p-1 rounded-b-md ${searchValue ? 'block' : 'hidden'}`}>
+      <div className={`w-full h-12 overflow-y-scroll bg-blue-200 p-1 rounded-b-md ${searchValue ? 'block' : 'hidden'}`}>
         {coinList &&
           coinList
             .filter((coin) => coin.name.includes(searchValue))
