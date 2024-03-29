@@ -7,7 +7,7 @@ import { Bar } from "react-chartjs-2";
 import "chart.js/auto"; // Importing chart.js automatically registers components, so individual registration is not required
 
 const HorizontalBarChart = () => {
-  //Get selected crypto currency, currency, and selected time from store
+  // Get selected crypto currency, currency, and selected time from store
   const selectedCoin = useSelector(
     (state) => state.selectCryptoCurrency.selectedcryptoCurrency
   );
@@ -18,22 +18,23 @@ const HorizontalBarChart = () => {
 
   const selectedTime = useSelector((state) => state.selectTime.selectedTime);
 
-  //fetch data
+  // Fetch data
   const { data: cryptoData, isFetching } = useGetMarketDataQuery({
     coin: selectedCoin,
     currency: selectedCurrency,
     time: selectedTime,
   });
 
+  // Prepare chart data
   let chartData = [];
-  if (cryptoData) {
+  if (cryptoData && cryptoData.prices) {
     chartData = cryptoData.prices.map((value) => ({
       x: moment(value[0]).format("MMM Do"),
       y: value[1],
     }));
   }
 
-  //chart options
+  // Chart options
   const options = {
     responsive: true,
     animation: {
@@ -57,13 +58,13 @@ const HorizontalBarChart = () => {
     indexAxis: "y",
   };
 
-  //chart data
+  // Chart data
   const data = {
     labels: chartData.map((value) => value.x),
     datasets: [
       {
         label: selectedCoin
-          ? `${selectedCurrency.toUpperCase()} vs ${selectedCoin.toUpperCase()}  `
+          ? `${selectedCurrency.toUpperCase()} vs ${selectedCoin.toUpperCase()}`
           : selectedCurrency.toUpperCase(),
         data: chartData.map((val) => val.y),
         borderColor: "rgb(0, 204, 0)",
