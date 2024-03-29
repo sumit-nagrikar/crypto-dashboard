@@ -4,25 +4,7 @@ import moment from "moment/moment";
 import { useSelector } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Bar } from "react-chartjs-2";
-
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import "chart.js/auto"; // Importing chart.js automatically registers components, so individual registration is not required
 
 const HorizontalBarChart = () => {
   //Get selected crypto currency, currency, and selected time from store
@@ -43,12 +25,13 @@ const HorizontalBarChart = () => {
     time: selectedTime,
   });
 
-  const coinsData = cryptoData?.prices;
-
-  const chartData = coinsData.map((value) => ({
-    x: value[0],
-    y: value[1],
-  }));
+  let chartData = [];
+  if (cryptoData) {
+    chartData = cryptoData.prices.map((value) => ({
+      x: moment(value[0]).format("MMM Do"),
+      y: value[1],
+    }));
+  }
 
   //chart options
   const options = {
@@ -62,41 +45,27 @@ const HorizontalBarChart = () => {
         align: "end",
       },
     },
-    datalabels: {
-      font: function (context) {
-        var width = context.chart.width;
-        var size = Math.round(width / 32);
-        return {
-          size: size,
-          weight: 600,
-        };
+    scales: {
+      y: {
+        ticks: {
+          callback: function (value) {
+            return moment(value).format("MMM Do");
+          },
+        },
       },
-      formatter: function (value) {
-        return Math.round(value * 10) / 10;
-      },
-    },
-    title: {
-      display: true,
-      text: "Horizontal Bar Chart",
     },
     indexAxis: "y",
-
-    elements: {
-      bar: {
-        borderWidth: 2,
-      },
-    },
   };
 
   //chart data
   const data = {
-    labels: chartData.map((value) => moment(value.x).format("MMM Do")),
+    labels: chartData.map((value) => value.x),
     datasets: [
       {
         label: selectedCoin
           ? `${selectedCurrency.toUpperCase()} vs ${selectedCoin.toUpperCase()}  `
           : selectedCurrency.toUpperCase(),
-        data: chartData?.map((val) => val.y),
+        data: chartData.map((val) => val.y),
         borderColor: "rgb(0, 204, 0)",
         backgroundColor: "rgb(0, 128, 0)",
       },

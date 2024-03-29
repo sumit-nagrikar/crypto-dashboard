@@ -3,13 +3,14 @@ import { useGetMarketDataQuery } from "../../features/api/marketDataApiSlice";
 import moment from "moment/moment";
 import { useSelector } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
@@ -18,14 +19,15 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
 );
 
-const HorizontalBarChart = () => {
-  //Get selected crypto currency, currency, and selected time from store
+function LineChart() {
+  // Get selected crypto currency, currency, and selected time from store
   const selectedCoin = useSelector(
     (state) => state.selectCryptoCurrency.selectedcryptoCurrency
   );
@@ -36,7 +38,7 @@ const HorizontalBarChart = () => {
 
   const selectedTime = useSelector((state) => state.selectTime.selectedTime);
 
-  //fetch data
+  // Fetch data
   const { data: cryptoData, isFetching } = useGetMarketDataQuery({
     coin: selectedCoin,
     currency: selectedCurrency,
@@ -45,12 +47,12 @@ const HorizontalBarChart = () => {
 
   const coinsData = cryptoData?.prices;
 
-  const chartData = coinsData.map((value) => ({
+  const chartData = coinsData?.map((value) => ({
     x: value[0],
     y: value[1],
   }));
 
-  //chart options
+  // Chart options
   const options = {
     responsive: true,
     animation: {
@@ -62,6 +64,11 @@ const HorizontalBarChart = () => {
         align: "end",
       },
     },
+    title: {
+      display: true,
+      text: "Line Chart",
+    },
+
     datalabels: {
       font: function (context) {
         var width = context.chart.width;
@@ -75,22 +82,11 @@ const HorizontalBarChart = () => {
         return Math.round(value * 10) / 10;
       },
     },
-    title: {
-      display: true,
-      text: "Horizontal Bar Chart",
-    },
-    indexAxis: "y",
-
-    elements: {
-      bar: {
-        borderWidth: 2,
-      },
-    },
   };
 
-  //chart data
+  // Chart data
   const data = {
-    labels: chartData.map((value) => moment(value.x).format("MMM Do")),
+    labels: chartData?.map((value) => moment(value.x).format("MMM Do")),
     datasets: [
       {
         label: selectedCoin
@@ -106,9 +102,9 @@ const HorizontalBarChart = () => {
   return (
     <div className="h-full w-full p-1 shadow-md">
       <SyncLoader color="rgb(0, 51, 102)" size={10} loading={isFetching} />
-      <Bar data={data} options={options} />
+      <Line data={data} options={options} />
     </div>
   );
-};
+}
 
-export default HorizontalBarChart;
+export default LineChart;

@@ -85,13 +85,14 @@ function PieChart() {
             Total value <strong>$1000</strong>
           </p>
         </div>
-        <div className="w-full h-80">
-          <SyncLoader
-            color="rgb(0, 51, 102)"
-            size={10}
-            loading={isFetching}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          />
+        <div className="w-full h-80 relative">
+          {isFetching && (
+            <SyncLoader
+              color="rgb(0, 51, 102)"
+              size={10}
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            />
+          )}
           <div className="w-full h-full">
             <Pie data={data} options={options} plugins={[ChartDataLabels]} />
           </div>

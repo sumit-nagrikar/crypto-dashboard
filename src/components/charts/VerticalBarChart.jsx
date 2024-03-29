@@ -1,10 +1,9 @@
 import React from "react";
 import { useGetMarketDataQuery } from "../../features/api/marketDataApiSlice";
-import moment from "moment/moment";
+import moment from "moment"; // Correct import for moment
 import { useSelector } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Bar } from "react-chartjs-2";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,7 +12,7 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from "chart.js/auto"; // Correct import for chart.js components
 
 ChartJS.register(
   CategoryScale,
@@ -43,10 +42,10 @@ function VerticalBarChart() {
 
   const coinsData = cryptoData?.prices;
 
-  const chartData = coinsData.map((value) => ({
+  const chartData = coinsData?.map((value) => ({
     x: value[0],
     y: value[1],
-  }));
+  })) || []; // Ensure chartData is an array even if coinsData is undefined or null
 
   // Chart options
   const options = {
@@ -92,7 +91,7 @@ function VerticalBarChart() {
         label: selectedCoin
           ? `${selectedCurrency.toUpperCase()} vs ${selectedCoin.toUpperCase()}  `
           : selectedCurrency.toUpperCase(),
-        data: chartData?.map((val) => val.y),
+        data: chartData.map((val) => val.y),
         borderColor: "rgb(0, 204, 0)",
         backgroundColor: "rgb(0, 128, 0)",
       },
