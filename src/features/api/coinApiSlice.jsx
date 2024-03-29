@@ -22,5 +22,6 @@ export const coinApi = createApi({
 export const {
   useGetTrendingcoinsQuery,
   useGetMarketsQuery,
-  useGetAllCoinsQuery,
+  useGetAllCoinsQuery
 } = coinApi;
+

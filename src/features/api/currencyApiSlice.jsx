@@ -5,13 +5,13 @@ export const currencyApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coingecko.com/api/v3" }),
   endpoints: (builder) => ({
     getAllCurrencies: builder.query({
-      query: () => "/simple/supported_vs_currencies",
-      transformResponse: (response) => response.data, // Ensure response.data is returned
+      query: () => "/simple/supported_vs_currencies"
+
     }),
   }),
 });
 
-export const { useGetAllCurrenciesQuery ,useGetCurrencyToCoinDataQuery } = currencyApi; // Remove `useGetCurrencyToCoinDataQuery` if not used
+export const { useGetAllCurrenciesQuery , useGetCurrencyToCoinDataQuery } = currencyApi; // Remove `useGetCurrencyToCoinDataQuery` if not used
 
 
 
