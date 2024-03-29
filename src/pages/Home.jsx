@@ -27,9 +27,9 @@ const Home = () => {
             <CurrencyDropDown />
             <Searchbar />
           </div>
-          <div className="flex flex-col md:flex-row h-full">
-            <div className="md:w-3/4 flex flex-col h-full">
-              <div className="flex justify-between items-center h-20 px-4 md:px-8 bg-blue-500">
+          <div className="flex flex-col md:flex-col h-full bg-red-100">
+            <div className="md:w-full flex flex-col h-full bg-orange-100">
+              <div className="flex justify-between items-center h-20 px-32 md:px-8 bg-blue-500">
                 <TimeButton />
                 <CryptoCurrencyDropDown />
                 <ChartTypeDropDown />
@@ -44,13 +44,13 @@ const Home = () => {
                 )}
               </div>
             </div>
-            <div className="md:w-1/4 flex flex-col justify-between items-stretch">
+            <div className="md:w-full flex flex-row justify-between items-stretch">
               <PieChart />
               <ExchangeRates />
             </div>
           </div>
         </div>
-        <div className="md:w-1/4">
+        <div className="md:w-3/4">
           <Sidebar />
         </div>
       </div>

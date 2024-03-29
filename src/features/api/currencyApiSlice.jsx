@@ -6,12 +6,9 @@ export const currencyApi = createApi({
   endpoints: (builder) => ({
     getAllCurrencies: builder.query({
       query: () => "/simple/supported_vs_currencies",
-      transformResponse: (response) => response.data, // Ensure response.data is returned
     }),
+   
   }),
 });
 
-export const { useGetAllCurrenciesQuery ,useGetCurrencyToCoinDataQuery } = currencyApi; // Remove `useGetCurrencyToCoinDataQuery` if not used
-
-
-
+export const { useGetAllCurrenciesQuery, } = currencyApi;

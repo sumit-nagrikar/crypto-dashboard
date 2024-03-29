@@ -79,7 +79,7 @@ function PieChart() {
   return (
     <div className="w-1/2 h-full m-1 rounded-lg shadow-md">
       <div className="w-full h-full flex flex-col justify-between p-1">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-{25vh} items-center justify-between">
           <p className="font-bold text-xl">Portfolio</p>
           <p className="text-gray-500">
             Total value <strong>$1000</strong>
