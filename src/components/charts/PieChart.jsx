@@ -55,8 +55,8 @@ function PieChart() {
           let sum = 0;
           let dataArr = ctx.chart.data.datasets[0].data;
           if (dataArr && dataArr.length > 0) {
-            dataArr.map((data) => {
-              sum += data;
+            dataArr.map((data)=>{
+              return sum += data;
             });
             let percentage = "$" + ((value * 1000) / sum).toFixed(2);
             return percentage;
