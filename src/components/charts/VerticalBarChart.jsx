@@ -81,6 +81,17 @@ function VerticalBarChart() {
         borderWidth: 2,
       },
     },
+    scales: {
+      x: {
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM Do'
+          }
+        }
+      }
+    }
   };
 
   // Chart data

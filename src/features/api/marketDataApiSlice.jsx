@@ -5,7 +5,8 @@ export const marketDataApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coingecko.com/api/v3" }),
   endpoints: (builder) => ({
     getMarketData: builder.query({
-      query: ({ coin, currency, time }) => `/coins/${coin}/market_chart?vs_currency=${currency}&days=${time}&interval`,
+      query: ({ coin, currency, time }) =>
+       `/coins/${coin}/market?vs_currency=${currency}&days=${time}`,
     }),
     getExchangeData: builder.query({
       query: () => `/exchange_rates`,

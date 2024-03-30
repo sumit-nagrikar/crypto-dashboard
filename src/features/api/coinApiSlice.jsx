@@ -4,12 +4,13 @@ export const coinApi = createApi({
   reducerPath: "coinApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coingecko.com/api/v3" }),
   endpoints: (builder) => ({
-    getTrendingCoins: builder.query({
+    getTrendingcoins: builder.query({
       query: () => "/search/trending",
     }),
+
     getMarkets: builder.query({
-      query: (currency, page = 1) =>
-        `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=13&page=${page}&sparkline=false`,
+      query: () =>
+        "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
     }),
 
     getAllCoins: builder.query({
@@ -18,4 +19,8 @@ export const coinApi = createApi({
   }),
 });
 
-export const { useGetTrendingCoinsQuery, useGetMarketsQuery, useGetAllCoinsQuery } = coinApi;
+export const {
+  useGetTrendingcoinsQuery,
+  useGetMarketsQuery,
+  useGetAllCoinsQuery,
+} = coinApi;
