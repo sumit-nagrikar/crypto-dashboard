@@ -21,7 +21,11 @@ const Home = () => {
   return (
     <div className="w-full">
       <Navbar />
+
+
       <div className="flex flex-col md:flex-row justify-between items-stretch w-full">
+
+
         <div className="md:w-3/4 flex flex-col h-full">
           <div className="flex justify-between items-center h-20 px-4 md:px-8 bg-red-500">
             <CurrencyDropDown />
@@ -34,6 +38,8 @@ const Home = () => {
                 <CryptoCurrencyDropDown />
                 <ChartTypeDropDown />
               </div>
+
+
               <div className="flex-1 flex flex-col items-center justify-center">
                 {chartType === "verticalBarChart" ? (
                   <VerticalBarChart />
@@ -43,6 +49,8 @@ const Home = () => {
                   <LineChart />
                 )}
               </div>
+
+
             </div>
             <div className="md:w-full flex flex-row justify-between items-stretch">
               <PieChart />
@@ -53,7 +61,10 @@ const Home = () => {
         <div className="md:w-3/4">
           <Sidebar />
         </div>
+
       </div>
+
+      
     </div>
   );
 };

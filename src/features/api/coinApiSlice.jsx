@@ -19,8 +19,22 @@ export const coinApi = createApi({
   }),
 });
 
+<<<<<<< HEAD
 export const {
   useGetTrendingcoinsQuery,
   useGetMarketsQuery,
   useGetAllCoinsQuery,
 } = coinApi;
+=======
+<<<<<<< HEAD
+
+export const {
+  useGetTrendingcoinsQuery,
+  useGetMarketsQuery,
+  useGetAllCoinsQuery
+} = coinApi;
+
+=======
+export const { useGetTrendingCoinsQuery, useGetMarketsQuery, useGetAllCoinsQuery } = coinApi;
+>>>>>>> 0d87544e65b816a5b08f8fe7f63ce44e7703e879
+>>>>>>> 086f6853b2b99e286ca87da85ba081b29100ff47
