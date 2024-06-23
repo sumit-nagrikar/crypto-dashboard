@@ -30,9 +30,11 @@ const HorizontalBarChart = () => {
   if (cryptoData && cryptoData.prices) {
     chartData = cryptoData.prices.map((value) => ({
       x: moment(value[0]).format("MMM Do"),
+      
       y: value[1],
     }));
   }
+  console.log("neww",chartData)
 
   // Chart options
   const options = {
