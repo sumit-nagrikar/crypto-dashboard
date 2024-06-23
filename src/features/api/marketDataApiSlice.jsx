@@ -7,22 +7,8 @@ export const marketDataApi = createApi({
 
     
     getMarketData: builder.query({
-<<<<<<< HEAD
-    //   query: (coin,currency,time) => `/coins/${coin}/market_chart?vs_currency=${currency}&days=${time}&interval`,
-    // }),
-
-      query: ({ coin, currency, time }) => {
-        if (!coin || !currency || !time) {
-          throw new Error("Invalid parameters: coin, currency, and time are required.");
-        }
-        return {
-          url: `/coins/${coin}/market_chart?vs_currency=${currency}&days=${time}&interval`,
-        };
-      },
-=======
       query: ({ coin, currency, time }) =>
        `/coins/${coin}/market?vs_currency=${currency}&days=${time}`,
->>>>>>> 5712a682cde34527cd30f1192bcd9584cd8912a4
     }),
 
 

@@ -7,16 +7,11 @@ export const currencyApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coingecko.com/api/v3" }), // Prepend CORS proxy URL
   endpoints: (builder) => ({
     getAllCurrencies: builder.query({
-<<<<<<< HEAD
-      query: () => "/simple/supported_vs_currencies", // Define the query endpoint
-=======
       query: () => "/simple/supported_vs_currencies",
->>>>>>> 5712a682cde34527cd30f1192bcd9584cd8912a4
     }),
   }),
 });
 
-<<<<<<< HEAD
 // Extract the hooks
 export const { useGetAllCurrenciesQuery } = currencyApi;
 
@@ -51,6 +46,3 @@ export const useGetAllCurrenciesQueryWithCors = () => {
 // });
 
 // export const { useGetAllCurrenciesQuery, } = currencyApi;
-=======
-export const { useGetAllCurrenciesQuery, } = currencyApi;
->>>>>>> 5712a682cde34527cd30f1192bcd9584cd8912a4

@@ -10,9 +10,9 @@ function App() {
       <Home />
       {<Sidebar />}
 
-      {/* <CoinDataFetcher>
+      <CoinDataFetcher>
         <CoinTable />
-      </CoinDataFetcher> */}
+      </CoinDataFetcher>
     </div>
   );
 }

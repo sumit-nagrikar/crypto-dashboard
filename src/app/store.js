@@ -22,7 +22,9 @@ export const store = configureStore({
     selectChartType: chartTypeSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
       .concat(coinApi.middleware)
       .concat(currencyApi.middleware)
       .concat(marketDataApi.middleware),
